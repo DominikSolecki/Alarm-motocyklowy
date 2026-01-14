@@ -88,13 +88,9 @@ Pilot nadaje 7 ramek, więc jeżeli zacznie nadawań w momencie gdy STM32 śpi, 
 Na czas uśpienia układ odbiorczy SYN480, akcelerometr LIS2dw12 są wyłączane za pośrednictwem power swicha. Pamięć eeprom, moduł sim, są włączane tylko po włączeniu alarmu.
 <div class="stats">
         <strong>Średni pobór prądu przez alarm:</strong> ok. 700µA
-    </div>
+   
  
-Tabela to świetny sposób, żeby "wymusić" ułożenie obok siebie, szczególnie jeśli zależy Ci na prostocie i pewności, że nic się nie przesunie. W HTML tabela jest bardzo stabilna.
 
-Oto jak to zrobić – zamień swoje obecne tagi <img> na ten kod:
-Kod tabeli dla Twoich zdjęć:
-HTML
 
 <table style="width: 100%; border-collapse: collapse;">
   <tr>
@@ -110,7 +106,7 @@ HTML
     </td>
   </tr>
 </table>
-
+ </div>
       
 Alarm "pilnuje" pozycji motocykla oraz siedziska. Jako czujnik ruchu wykorzystałem akcelerometr LIS2DW12, dzięki czemu alarm wykrywa ruch we wszystkich osiach.  
 Jako czujnik otwarcia siedziska może być wykorzystany kontaktron + magnes, lub zwykła krańcówka zwierająca do masy motocykla.   
@@ -166,6 +162,7 @@ Aplikacja daje dostęp do ustawień alarmu oraz testów diagnostycznych. </p>
 
 </body>
 </html>
+
 
 
 
