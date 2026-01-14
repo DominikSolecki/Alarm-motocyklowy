@@ -33,6 +33,27 @@
         .image-container a {
             max-width: 100%;
         }
+        .amperomierze-container {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    .amperomierze-container a {
+        flex: 1;
+        max-width: 400px; /* zapobiega zbyt wielkim zdjęciom na dużych ekranach */
+    }
+    .amperomierze-container img {
+        width: 100%;
+        height: auto;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        transition: transform 0.2s;
+    }
+    .amperomierze-container img:hover {
+        transform: scale(1.02); /* lekki efekt po najechaniu myszką */
+        border-color: #2980b9;
+    }
     </style>
 </head>
 <body>
@@ -68,14 +89,16 @@ Na czas uśpienia układ odbiorczy SYN480, akcelerometr LIS2dw12 są wyłączane
 <div class="stats">
         <strong>Średni pobór prądu przez alarm:</strong> ok. 700µA
     </div>
-    <section>
-    <div class="image-container">
  
-            <img src="1768389966237.jpg" alt="Pilot przód">
-        <img src="1768389966262.jpg" alt="Pilot tył">
-       
-    </div>
-</section>
+   <div class="amperomierze-container">
+    <a href="1768389966237.jpg" target="_blank">
+        <img src="1768389966237.jpg" alt="Pomiar prądu 1">
+    </a>
+    <a href="1768389966262.jpg" target="_blank">
+        <img src="1768389966262.jpg" alt="Pomiar prądu 2">
+    </a>
+</div>
+
       
 Alarm "pilnuje" pozycji motocykla oraz siedziska. Jako czujnik ruchu wykorzystałem akcelerometr LIS2DW12, dzięki czemu alarm wykrywa ruch we wszystkich osiach.  
 Jako czujnik otwarcia siedziska może być wykorzystany kontaktron + magnes, lub zwykła krańcówka zwierająca do masy motocykla.   
@@ -131,6 +154,7 @@ Aplikacja daje dostęp do ustawień alarmu oraz testów diagnostycznych. </p>
 
 </body>
 </html>
+
 
 
 
