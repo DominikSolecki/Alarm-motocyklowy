@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alarm motocyklowy - Dominik Solecki</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background: #f0f2f5; }
         header { background: #2c3e50; color: white; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 30px; }
@@ -39,7 +38,22 @@
 
 <section>
     <h2>ALARM (Jednostka Centralna)</h2>
-    <p>Sercem alarmu jest <strong>STM32F401RET6</strong>. Pracuje w cyklach: 500ms uśpienia / 50ms nasłuchu na preambułę pilota.</p>
+    <p>Sercem alarmu jest <strong>STM32F401RET6</strong> pracuje w cuklach, 500ms śpi, 50ms czeka na preambułę sygnału z pilota, gdy ją odbierze przedłuża sobie czas na odebranie całej ramki.
+Pilot nadaje 7 ramek, więc jeżeli zacznie nadawań w momencie gdy STM32 śpi, to któraś z ramek i tak zostanie odebrana po wybudzeniu.
+Na czas uśpienia układ odbiorczy SYN480, akcelerometr LIS2dw12 są wyłączane za pośrednictwem power swicha. Pamięć eeprom, moduł sim, są włączane tylko po włączeniu alarmu.
+Dzięki temu średni pobór prądu przez alarm jest na poziomie około 700uA.
+
+
+Alarm "pilnuje" pozycji motocykla oraz siedziska. Jako czujnik ruchu wykorzystałem akceloremtr LIS2DW12, dzięki czemu alarm wykrywa ruch we wszystkich osiach.  
+Jako czujnik otwarcia siedziska może być wykorzystany kontaktron + magnes, lub zwykła krańcówka zwierająca do masy motocykla.   
+Po wykryciu ruchu, lub otwarcia siedziska włącza się alarm, steruje on kierunkowskazami i klaksonem generując sygnał o częstotliwości 1Hz, oraz włącza +12V dla syreny 
+<BR>oraz przekaźnika do odcięcia zapłonu. <BR> 
+Zostaje wysłany sms z powiadomienie o alarmie oraz co go wyzwoliło, zdarzenie to jest zapisywanie w historii wraz z datą i godziną pobraną z modułu sim. W alarmie jako moduł sim <BR>wykorzystałem moduł LTE A7682E.  
+Uzbrojenie alarmu jest sygnalizowane przez krótki sygnał dla kierunkowskazów oraz klaksonu, rozbrojenie przez 2 krótkie sygnały dla kierunkowskazów i klaksonu.  
+Jeżeli Alarm jest już uzbrojony lub rozbrojony schemat jet taki sam z tym że migają tylko kierunkowskazy.  
+W celu ochrony akumulatora w motocyklu są dwa progi powiadomień. Domyślnie to 12V dla powiadomienia o potrzebie podładowania akumulatora i 11V dla powiadomienia o rozładowanym akumulatorze.
+Częstotliwość pomiaru napięcia akumulatora można ustawić w aplikacji. Dzielnik napięcia jest włączony poprzez mosfet tylko na czas pomiaru napięcia gdy nadejdzie na to pora. 
+  </p>
     <div class="stats">
         <strong>Średni pobór prądu przez alarm:</strong> ok. 700µA
     </div>
@@ -63,3 +77,4 @@
 
 </body>
 </html>
+
