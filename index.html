@@ -37,7 +37,7 @@
 </section>
 
 <section>
-    <h2>ALARM (Jednostka Centralna)</h2>
+    <h2>ALARM </h2>
     <p>Sercem alarmu jest <strong>STM32F401RET6</strong> pracuje w cuklach, 500ms śpi, 50ms czeka na preambułę sygnału z pilota, gdy ją odbierze przedłuża sobie czas na odebranie całej ramki.
 Pilot nadaje 7 ramek, więc jeżeli zacznie nadawań w momencie gdy STM32 śpi, to któraś z ramek i tak zostanie odebrana po wybudzeniu.
 Na czas uśpienia układ odbiorczy SYN480, akcelerometr LIS2dw12 są wyłączane za pośrednictwem power swicha. Pamięć eeprom, moduł sim, są włączane tylko po włączeniu alarmu.
@@ -95,6 +95,7 @@ Aplikacja daje dostęp do ustawień alarmu oraz testów diagnostycznych. </p>
 
 </body>
 </html>
+
 
 
 
