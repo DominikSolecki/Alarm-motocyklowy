@@ -10,7 +10,29 @@
         h2 { color: #2980b9; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         img { max-width: 100%; height: auto; display: block; margin: 20px auto; border-radius: 5px; border: 1px solid #ddd; }
         .stats { background: #e8f4fd; padding: 15px; border-left: 5px solid #3498db; margin: 15px 0; }
-        ul { padding-left: 20px; }
+        ul { padding-left: 20px; } .image-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px; /* Odstęp między zdjęciami */
+        justify-content: center; /* Wyśrodkowanie */
+        margin: 20px 0;
+    }
+    .image-container a {
+        flex: 1; /* Pozwala zdjęciom rosnąć i wypełniać miejsce */
+        min-width: 300px; /* Minimalna szerokość zdjęcia zanim spadnie do nowej linii */
+        max-width: 45%; /* Maksymalnie dwa zdjęcia obok siebie */
+    }
+    .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    
+    /* Poprawka dla telefonów */
+    @media (max-width: 600px) {
+        .image-container a {
+            max-width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -46,8 +68,16 @@ Na czas uśpienia układ odbiorczy SYN480, akcelerometr LIS2dw12 są wyłączane
 <div class="stats">
         <strong>Średni pobór prądu przez alarm:</strong> ok. 700µA
     </div>
-                <img src="1768388185922.jpg" alt="">
-
+    <section>
+    <h2>Podzespoły Pilota</h2>
+    <div class="image-container">
+ 
+            <img src="1768389966237.jpg" alt="Pilot przód">
+        <img src="1768389966262.jpg" alt="Pilot tył">
+       
+    </div>
+</section>
+      
 Alarm "pilnuje" pozycji motocykla oraz siedziska. Jako czujnik ruchu wykorzystałem akcelerometr LIS2DW12, dzięki czemu alarm wykrywa ruch we wszystkich osiach.  
 Jako czujnik otwarcia siedziska może być wykorzystany kontaktron + magnes, lub zwykła krańcówka zwierająca do masy motocykla.   
 Po wykryciu ruchu, lub otwarcia siedziska włącza się alarm, steruje on kierunkowskazami i klaksonem generując sygnał o częstotliwości 1Hz, oraz włącza +12V dla syreny 
@@ -58,8 +88,7 @@ Jeżeli Alarm jest już uzbrojony lub rozbrojony schemat jet taki sam z tym że 
 W celu ochrony akumulatora w motocyklu są dwa progi powiadomień. Domyślnie to 12V dla powiadomienia o potrzebie podładowania akumulatora i 11V dla powiadomienia o rozładowanym akumulatorze.
 Częstotliwość pomiaru napięcia akumulatora można ustawić w aplikacji. Dzielnik napięcia jest włączony poprzez mosfet tylko na czas pomiaru napięcia gdy nadejdzie na to pora. 
   </p>
-        <img src="1768389966237.jpg" alt="">
-        <img src="1768389966262.jpg" alt="">
+        
 <a href="alarm_v5_stm32.pdf" target="_blank">
     <img src="https://github.com/user-attachments/assets/752c497f-bef9-4805-986d-9468dd6500a3" alt="Kliknij, aby powiększyć schemat">
 </a>
@@ -103,6 +132,7 @@ Aplikacja daje dostęp do ustawień alarmu oraz testów diagnostycznych. </p>
 
 </body>
 </html>
+
 
 
 
