@@ -38,14 +38,14 @@
 
 <section>
     <h2>ALARM </h2>
-    <p>Sercem alarmu jest <strong>STM32F401RET6</strong> pracuje w cuklach, 500ms śpi, 50ms czeka na preambułę sygnału z pilota, gdy ją odbierze przedłuża sobie czas na odebranie całej ramki.
+    <p>Sercem alarmu jest <strong>STM32F401RET6</strong> pracuje w cyklach, 500ms śpi, 50ms czeka na preambułę sygnału z pilota, gdy ją odbierze przedłuża sobie czas na odebranie całej ramki.
 Pilot nadaje 7 ramek, więc jeżeli zacznie nadawań w momencie gdy STM32 śpi, to któraś z ramek i tak zostanie odebrana po wybudzeniu.
 Na czas uśpienia układ odbiorczy SYN480, akcelerometr LIS2dw12 są wyłączane za pośrednictwem power swicha. Pamięć eeprom, moduł sim, są włączane tylko po włączeniu alarmu.
 <div class="stats">
         <strong>Średni pobór prądu przez alarm:</strong> ok. 700µA
     </div>
 
-Alarm "pilnuje" pozycji motocykla oraz siedziska. Jako czujnik ruchu wykorzystałem akceloremtr LIS2DW12, dzięki czemu alarm wykrywa ruch we wszystkich osiach.  
+Alarm "pilnuje" pozycji motocykla oraz siedziska. Jako czujnik ruchu wykorzystałem akcelerometr LIS2DW12, dzięki czemu alarm wykrywa ruch we wszystkich osiach.  
 Jako czujnik otwarcia siedziska może być wykorzystany kontaktron + magnes, lub zwykła krańcówka zwierająca do masy motocykla.   
 Po wykryciu ruchu, lub otwarcia siedziska włącza się alarm, steruje on kierunkowskazami i klaksonem generując sygnał o częstotliwości 1Hz, oraz włącza +12V dla syreny 
 <BR>oraz przekaźnika do odcięcia zapłonu. <BR> 
@@ -96,6 +96,7 @@ Aplikacja daje dostęp do ustawień alarmu oraz testów diagnostycznych. </p>
 
 </body>
 </html>
+
 
 
 
