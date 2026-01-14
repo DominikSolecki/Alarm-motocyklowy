@@ -57,24 +57,44 @@ Częstotliwość pomiaru napięcia akumulatora można ustawić w aplikacji. Dzie
     <div class="stats">
         <strong>Średni pobór prądu przez alarm:</strong> ok. 700µA
     </div>
-    <p>Jako czujnik ruchu wykorzystałem akcelerometr <strong>LIS2DW12</strong>. Moduł LTE <strong>A7682E</strong> odpowiada za komunikację SMS i pobieranie czasu.</p>
     <img src="https://github.com/user-attachments/assets/849eb1b5-ef54-403f-a70e-0ba3342f2fb7" alt="Płytka alarmu">
     <img src="https://github.com/user-attachments/assets/752c497f-bef9-4805-986d-9468dd6500a3" alt="Schemat główny alarmu">
 </section>
 
 <section>
     <h2>APLIKACJA MOBILNA</h2>
-    <p>Moduł Bluetooth (AT-09, technologia BLE) aktywuje się tylko po stacyjce. Komunikacja jest szyfrowana i zabezpieczona 6-cyfrowym numerem urządzenia oraz kodem PIN.</p>
-    <p><strong>Możliwości aplikacji:</strong></p>
-    <ul>
-        <li>Ustawienie numeru powiadomień SMS</li>
-        <li>Sprawdzanie salda karty (USSD)</li>
-        <li>Konfiguracja progów napięcia akumulatora (11V/12V)</li>
-        <li>Czułość akcelerometru i diagnostyka wyjść (syrena, kierunkowskazy)</li>
-        <li>Odczyt historii 10 ostatnich zdarzeń</li>
-    </ul>
+    <p>Moduł Bluetooth jest włączany tylko po przekręceniu stacyjki. Ponowne wyłączenie stacyjki, lub uruchomienie silnika wyłącza moduł bluetooth.
+Moduł bluetooth to AT-09, czyli w technologi BLE. Gdy bluetooth jest włączony można się połączyć aplikacją w telefonie z alarmem. 
+Komunikacja pomiędzy alarmem a aplikacją jest kodowana. Gdy łączymy się po raz pierwszy, czy to po instalacji aplikacji, lub wyczyszczeniu jej pamięci trzeba podać i sześciu cyfrowy numer z obudowy alarmu.  
+Zapobiega to dostępu z innego telefonu z zainstalowaną aplikacją. Po sparowaniu aplikacji z alarmem należy podać numer pin.  
+Przy pierwszym uruchomieniu domyślny, można go zmienić w każdej chwili w aplikacji. Trzykrotne wpisanie błędnego pinu spowoduje wysłanie sms z przypomnieniem numeru pin.  
+Aplikacja daje dostęp do ustawień alarmu oraz testów diagnostycznych. </p>
+ <p><strong>W aplikacji można w niej ustawić: </strong></p>
+  <ul>
+<li>numer telefonu dla powiadomień sms  </li>
+<li>włączyć / wyłączyć numer USSD do sprawdzenia salda karty jeżeli korzystamy z karty prepaid  </li>
+<li>progu napięcia powiadomienia potrzeby podładowania akumulatora  </li>
+<li>progu napięcia powiadomienia o rozładowanym akumulatorze  </li>
+<li>częstotliwości kontroli napięcia akumulatora  </li>
+<li>czułość akcelerometru  </li>
+<li>czas trwania impulsu powiadomienia dla kierunkowskazów i klaksonu  </li>
+<li>czas trwania alarmu  </li>
+<li>numer PIN  </li>
+<li>zaprogramować pilot  </li>
+<li>uzbroić / rozbroić alarm </li>
+  </ul>
+ <p><strong>W diagnostyce możemy przetestować: </strong></p>
+<ul>
+<li>sterowanie kierunkowskazami </li>
+<li>sterowanie klaksonem  </li>
+<li>sterowanie syreną  </li>
+<li>sprawdzić działanie akcelerometru w raz z wykrywaniem ruchu  </li>
+<li>sprawdzić działanie modułu sim wraz z wysłaniem testowego sms o raz sprawdzić saldo karty sim  </li>
+<li>odczytać historie dziesięciu ostatnich zdążeń takich jak wykrycie ruchu, otwarcie siedziska, powiadomienia do stanie akumulatora, przypomnienie numeru pin. </li> 
+</ul>
 </section>
 
 </body>
 </html>
+
 
