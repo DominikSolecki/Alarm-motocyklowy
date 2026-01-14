@@ -65,20 +65,22 @@
 
 <section>
     <img src="https://github.com/user-attachments/assets/70fcd812-42fb-4301-93f1-5969bf0ac18c" alt="Widok główny projektu">
-    <p>Głównym założeniem projektu było stworzenie alarmu motocyklowego z czujnikiem na bazie akcelerometru oraz powiadomieniami SMS. System posiada Bluetooth z aplikacją mobilną do zmiany ustawień, kontrolę stanu akumulatora oraz kodowany pilot z systemem <strong>rolling code</strong>.</p>
+    <p>Głównym założeniem projektu, było stworzenie alarmu motocyklowego, z czujnikiem na bazie akcelerometru, oraz powiadomieniami SMS. 
+        System posiada Bluetooth z aplikacją mobilną do zmiany ustawień, kontrolę stanu akumulatora, oraz kodowany pilot z systemem <strong>rolling code</strong>.</p>
 </section>
 
 <section>
     <h2>PILOT</h2>
         <img src="https://github.com/user-attachments/assets/364f7548-a5a3-49b8-91e0-c1b896e62867" alt="Pilot - elektronika">
 
-    <p>Zbudowany na układzie <strong>ATTINY85</strong>, do nadawania sygnału wykorzystuje <strong>SYN115</strong>. Zasilany baterią CR2032. Mikrokontroler jest stale w trybie uśpienia, a nadajnik wyłączony.</p>
+    <p>Zbudowany na układzie <strong>ATTINY85</strong>, do nadawania sygnału wykorzystuje <strong>SYN115</strong>. Zasilany baterią CR2032.
+        Mikrokontroler jest stale w trybie uśpienia, a nadajnik jest wyłączony.</p>
     <div class="stats">
         <strong>Pobór prądu pilota w uśpieniu:</strong> 1µA
                 <img src="1768388185922.jpg" alt="">
 
     </div>
-    <p>Mikrostyki poprzez przerwanie wybudzają ATTINY85, a ten w zależności który mikrostyk go wybudził wysyła poprzez SYN115 7 ramek kodu (KEELOQ + rolling code).</p>
+    <p>Mikrostyki poprzez przerwanie wybudzają ATTINY85, a ten w zależności, który mikrostyk go wybudził wysyła poprzez SYN115 7 ramek kodu (KEELOQ + rolling code).</p>
     <img src="https://github.com/user-attachments/assets/cef607a7-1d74-4af1-b122-b6059c9625cd" alt="Schemat pilota">
 </section>
 
@@ -98,7 +100,7 @@
     </td>
   </tr>
 </table>
-    <p>Sercem alarmu jest <strong>STM32F401RET6</strong> pracuje w cyklach, 500ms śpi, 50ms czeka na preambułę sygnału z pilota, gdy ją odbierze przedłuża sobie czas na odebranie całej ramki.
+    <p>Sercem alarmu jest <strong>STM32F401RET6</strong>, pracuje w cyklach 500ms śpi, 50ms czeka na preambułę sygnału z pilota, gdy ją odbierze przedłuża sobie czas na odebranie całej ramki.
 Pilot nadaje 7 ramek, więc jeżeli zacznie nadawań w momencie gdy STM32 śpi, to któraś z ramek i tak zostanie odebrana po wybudzeniu.
 Na czas uśpienia układ odbiorczy SYN480, akcelerometr LIS2dw12 są wyłączane za pośrednictwem power swicha. Pamięć eeprom, moduł sim, są włączane tylko po włączeniu alarmu.
 <div class="stats">
@@ -127,7 +129,8 @@ Alarm "pilnuje" pozycji motocykla oraz siedziska. Jako czujnik ruchu wykorzysta�
 Jako czujnik otwarcia siedziska może być wykorzystany kontaktron + magnes, lub zwykła krańcówka zwierająca do masy motocykla.   
 Po wykryciu ruchu, lub otwarcia siedziska włącza się alarm, steruje on kierunkowskazami i klaksonem generując sygnał o częstotliwości 1Hz, oraz włącza +12V dla syreny 
 <BR>oraz przekaźnika do odcięcia zapłonu. <BR> 
-Zostaje wysłany sms z powiadomienie o alarmie oraz co go wyzwoliło, zdarzenie to jest zapisywanie w historii wraz z datą i godziną pobraną z modułu sim. W alarmie jako moduł sim <BR>wykorzystałem moduł LTE A7682E.  
+Następnie zostaje wysłany sms z powiadomienie o alarmie oraz informacja co go wyzwoliło, zdarzenie to jest zapisywanie w historii wraz z datą i godziną pobraną z modułu sim.
+    W alarmie jako moduł sim <BR>wykorzystałem moduł LTE A7682E.  
 Uzbrojenie alarmu jest sygnalizowane przez krótki sygnał dla kierunkowskazów oraz klaksonu, rozbrojenie przez 2 krótkie sygnały dla kierunkowskazów i klaksonu.  
 Jeżeli Alarm jest już uzbrojony lub rozbrojony schemat jet taki sam z tym że migają tylko kierunkowskazy.  
 W celu ochrony akumulatora w motocyklu są dwa progi powiadomień. Domyślnie to 12V dla powiadomienia o potrzebie podładowania akumulatora i 11V dla powiadomienia o rozładowanym akumulatorze.
@@ -146,9 +149,9 @@ Częstotliwość pomiaru napięcia akumulatora można ustawić w aplikacji. Dzie
         <img src="1767012429120.jpg" alt="">
 
     <p>Moduł Bluetooth jest włączany tylko po przekręceniu stacyjki. Ponowne wyłączenie stacyjki, lub uruchomienie silnika wyłącza moduł bluetooth.
-Moduł bluetooth to AT-09, czyli w technologi BLE. Gdy bluetooth jest włączony można się połączyć aplikacją w telefonie z alarmem. 
-Komunikacja pomiędzy alarmem a aplikacją jest kodowana. Gdy łączymy się po raz pierwszy, czy to po instalacji aplikacji, lub wyczyszczeniu jej pamięci trzeba podać i sześciu cyfrowy numer z obudowy alarmu.  
-Zapobiega to dostępu z innego telefonu z zainstalowaną aplikacją. Po sparowaniu aplikacji z alarmem należy podać numer pin.  
+Moduł bluetooth BLE to AT-09. Gdy bluetooth jest włączony można się połączyć aplikacją w telefonie z alarmem. 
+Komunikacja pomiędzy alarmem a aplikacją jest kodowana. Gdy łączymy się po raz pierwszy, czy to po instalacji aplikacji, lub wyczyszczeniu jej pamięci trzeba podać sześcio cyfrowy numer z obudowy alarmu.  
+Zapobiega to dostępu z innego telefonu, z zainstalowaną aplikacją. Po sparowaniu aplikacji z alarmem, należy podać numer pin.  
 Przy pierwszym uruchomieniu domyślny, można go zmienić w każdej chwili w aplikacji. Trzykrotne wpisanie błędnego pinu spowoduje wysłanie sms z przypomnieniem numeru pin.  
 Aplikacja daje dostęp do ustawień alarmu oraz testów diagnostycznych. </p>
  <p><strong>Przy pomocy aplikacji można zmienić ustawienia alarmu: </strong></p>
@@ -178,6 +181,7 @@ Aplikacja daje dostęp do ustawień alarmu oraz testów diagnostycznych. </p>
 
 </body>
 </html>
+
 
 
 
