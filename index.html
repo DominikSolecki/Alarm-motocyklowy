@@ -70,6 +70,8 @@
 
 <section>
     <h2>PILOT</h2>
+        <img src="https://github.com/user-attachments/assets/364f7548-a5a3-49b8-91e0-c1b896e62867" alt="Pilot - elektronika">
+
     <p>Zbudowany na układzie <strong>ATTINY85</strong>, do nadawania sygnału wykorzystuje <strong>SYN115</strong>. Zasilany baterią CR2032. Mikrokontroler jest stale w trybie uśpienia, a nadajnik wyłączony.</p>
     <div class="stats">
         <strong>Pobór prądu pilota w uśpieniu:</strong> 1µA
@@ -77,12 +79,25 @@
 
     </div>
     <p>Mikrostyki poprzez przerwanie wybudzają ATTINY85, a ten w zależności który mikrostyk go wybudził wysyła poprzez SYN115 7 ramek kodu (KEELOQ + rolling code).</p>
-    <img src="https://github.com/user-attachments/assets/364f7548-a5a3-49b8-91e0-c1b896e62867" alt="Pilot - elektronika">
     <img src="https://github.com/user-attachments/assets/cef607a7-1d74-4af1-b122-b6059c9625cd" alt="Schemat pilota">
 </section>
 
 <section>
     <h2>ALARM </h2>
+    <table style="width: 100%; border-collapse: collapse;">
+  <tr>
+    <td style="width: 50%; padding: 5px;">
+      <a href="DSC3631.jpg" target="_blank">
+        <img src="DSC3631.jpg" alt="Pomiar prądu 1" style="width: 100%; border-radius: 5px;">
+      </a>
+    </td>
+    <td style="width: 50%; padding: 5px;">
+      <a href="DSC3633.jpg" target="_blank">
+        <img src="DSC3633.jpg" alt="Pomiar prądu 2" style="width: 100%; border-radius: 5px;">
+      </a>
+    </td>
+  </tr>
+</table>
     <p>Sercem alarmu jest <strong>STM32F401RET6</strong> pracuje w cyklach, 500ms śpi, 50ms czeka na preambułę sygnału z pilota, gdy ją odbierze przedłuża sobie czas na odebranie całej ramki.
 Pilot nadaje 7 ramek, więc jeżeli zacznie nadawań w momencie gdy STM32 śpi, to któraś z ramek i tak zostanie odebrana po wybudzeniu.
 Na czas uśpienia układ odbiorczy SYN480, akcelerometr LIS2dw12 są wyłączane za pośrednictwem power swicha. Pamięć eeprom, moduł sim, są włączane tylko po włączeniu alarmu.
@@ -162,6 +177,7 @@ Aplikacja daje dostęp do ustawień alarmu oraz testów diagnostycznych. </p>
 
 </body>
 </html>
+
 
 
 
