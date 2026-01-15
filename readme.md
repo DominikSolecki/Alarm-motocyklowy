@@ -20,4 +20,4 @@ Strona wizualna z opisem i zdjęciami:
 - Zabezpieczenie przed nieautoryzowanym dostępem (kodowanie BLE).
 
 ---
-*Projekt stworzony przez: Dominik Solecki*
+*Projekt stworzony przez: Dominik Sołecki*
