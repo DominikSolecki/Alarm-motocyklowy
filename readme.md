@@ -1,4 +1,4 @@
-# Alarm motocyklowy - LTE, BLE, STM32 & ATtiny85
+# Alarm motocyklowy - LTE, BLE, STM32 & ATtiny85, KEELOQ
 
 System zabezpieczeń motocyklowych z bardzo niskim poborem prądu (700µA).
 
