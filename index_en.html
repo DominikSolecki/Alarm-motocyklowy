@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Motorcycle alarm project based on STM32 and ATTINY85. Low power consumption 700uA, SMS notifications, Bluetooth, and mobile app.">
+    <meta name="keywords" content="motorcycle alarm, STM32, ATTINY85, electronics, SMS notifications, DIY project, energy saving">
+
+    <meta property="og:title" content="Motorcycle Alarm System">
+    <meta property="og:description" content="Security system with LTE and Bluetooth connectivity.">
+    <meta property="og:image" content="https://github.com/user-attachments/assets/70fcd812-42fb-4301-93f1-5969bf0ac18c">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background: #f0f2f5; }
+        header { background: #2c3e50; color: white; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 30px; }
+        section { background: white; padding: 25px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { color: #2980b9; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        img { max-width: 100%; height: auto; display: block; margin: 20px auto; border-radius: 5px; border: 1px solid #ddd; }
+        .stats { background: #e8f4fd; padding: 15px; border-left: 5px solid #3498db; margin: 15px 0; }
+        ul { padding-left: 20px; }
+        .image-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin: 20px 0; }
+        .image-container a { flex: 1; min-width: 300px; max-width: 45%; }
+        .image-container img { width: 100%; height: auto; border-radius: 8px; }
+        .lang-link { color: white; text-decoration: none; font-weight: bold; font-size: 0.9em; border: 1px solid white; padding: 5px 10px; border-radius: 5px; }
+        .lang-link:hover { background: white; color: #2c3e50; }
+        
+        @media (max-width: 600px) {
+            .image-container a { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Motorcycle Alarm with SMS and Bluetooth Notifications</h1>
+    <a href="index.html" class="lang-link">Zmień na Polski</a>
+</header>
+
+<section>
+    <img src="https://github.com/user-attachments/assets/70fcd812-42fb-4301-93f1-5969bf0ac18c" alt="Main project view">
+    <p>The main objective of the project was to create a motorcycle alarm with an accelerometer-based sensor and SMS notifications. The system features Bluetooth with a mobile app for settings adjustment, battery status monitoring, and an encoded remote with a <strong>rolling code</strong> system.</p>
+</section>
+
+<section>
+    <h2>REMOTE CONTROL</h2>
+    <img src="https://github.com/user-attachments/assets/364f7548-a5a3-49b8-91e0-c1b896e62867" alt="Remote - electronics">
+
+    <p>Built on the <strong>ATTINY85</strong> chip, it uses <strong>SYN115</strong> for signal transmission. Powered by a CR2032 battery. The microcontroller remains in sleep mode, and the transmitter is turned off when not in use.</p>
+    <div class="stats">
+        <strong>Remote standby current consumption:</strong> 1µA
+        <img src="1768388185922.jpg" alt="Current measurement">
+    </div>
+    <p>Tactile switches wake up the ATTINY85 via an interrupt. Depending on which switch was pressed, it sends 7 frames of code (KEELOQ + rolling code) via the SYN115.</p>
+    <img src="https://github.com/user-attachments/assets/cef607a7-1d74-4af1-b122-b6059c9625cd" alt="Remote schematic">
+</section>
+
+<section>
+    <h2>ALARM UNIT</h2>
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <td style="width: 50%; padding: 5px;">
+                <a href="DSC3631.jpg" target="_blank">
+                    <img src="DSC3631.jpg" alt="Measurement 1" style="width: 100%; border-radius: 5px;">
+                </a>
+            </td>
+            <td style="width: 50%; padding: 5px;">
+                <a href="DSC3633.jpg" target="_blank">
+                    <img src="DSC3633.jpg" alt="Measurement 2" style="width: 100%; border-radius: 5px;">
+                </a>
+            </td>
+        </tr>
+    </table>
+    <p>The heart of the alarm is the <strong>STM32F401RET6</strong>. It works in cycles: 500ms sleep / 50ms listening for the remote preamble. If a preamble is detected, it extends the wake-time to receive the full frame. Since the remote sends 7 frames, at least one will be captured even if the STM32 starts in sleep mode. During sleep, the SYN480 receiver and LIS2DW12 accelerometer are turned off via a power switch. EEPROM and the SIM module are powered only when the alarm is active.</p>
+    
+    <div class="stats">
+        <strong>Average alarm current consumption:</strong> approx. 700µA
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 50%; padding: 5px;">
+                    <a href="1768389966237.jpg" target="_blank">
+                        <img src="1768389966237.jpg" alt="Current measurement 1" style="width: 100%; border-radius: 5px;">
+                    </a>
+                </td>
+                <td style="width: 50%; padding: 5px;">
+                    <a href="1768389966262.jpg" target="_blank">
+                        <img src="1768389966262.jpg" alt="Current measurement 2" style="width: 100%; border-radius: 5px;">
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <p>The alarm monitors both the motorcycle's position and the seat. Using the <strong>LIS2DW12</strong> accelerometer, it detects motion across all axes. For seat opening detection, a reed switch with a magnet or a standard limit switch connected to the motorcycle's ground can be used. Upon motion or seat triggering, the alarm activates, controlling indicators and the horn at 1Hz frequency, and provides +12V for the siren and ignition cut-off relay. An SMS notification is then sent detailing what triggered the alarm, and the event is saved in history with a timestamp from the LTE A7682E module. Arming is signaled by 1 short chirp/flash, disarming by 2.</p>
+    
+    <a href="alarm_v5_stm32.pdf" target="_blank">
+        <img src="https://github.com/user-attachments/assets/752c497f-bef9-4805-986d-9468dd6500a3" alt="Click to enlarge schematic">
+    </a>
+</section>
+
+<section>
+    <h2>MOBILE APPLICATION</h2>
+    <img src="1767012429120.jpg" alt="Mobile App Interface">
+    <p>The Bluetooth module (BLE AT-09) is activated only after turning the ignition key. Turning the ignition off or starting the engine disables the module. Communication is encrypted. When connecting for the first time, a six-digit ID from the alarm casing is required. After pairing, a PIN code is needed (default at first start). Three incorrect PIN entries trigger an SMS with a PIN reminder.</p>
+    
+    <p><strong>App Features:</strong></p>
+    <ul>
+        <li>Set phone number for SMS notifications</li>
+        <li>Enable/disable USSD for prepaid balance checks</li>
+        <li>Set battery warning thresholds (e.g., 11V and 12V)</li>
+        <li>Battery voltage check frequency</li>
+        <li>Accelerometer sensitivity adjustment</li>
+        <li>Duration of indicator/horn pulses and alarm duration</li>
+        <li>PIN code management and remote programming</li>
+        <li>Arm/Disarm the system</li>
+    </ul>
+
+    <p><strong>Diagnostics:</strong></p>
+    <ul>
+        <li>Test indicators, horn, and siren</li>
+        <li>Verify accelerometer and motion detection</li>
+        <li>Test SIM module (send test SMS / check balance)</li>
+        <li>Read history of the last 10 events (motion, battery alerts, seat opening)</li>
+    </ul>
+</section>
+
+<img src="DSC3634.jpg" alt="Device overview">
+
+</body>
+</html>
