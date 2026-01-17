@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection Instructions - MotoGuard STM32</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #f4f7f6; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 30px; }
+        .diagram { text-align: center; margin: 30px 0; background: #fff; padding: 10px; border: 1px solid #eee; border-radius: 8px; }
+        .diagram img { max-width: 100%; height: auto; }
+        
+        .pin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .pin-table th, .pin-table td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        .pin-table th { background: #3498db; color: white; }
+        .pin-table tr:nth-child(even) { background: #f9f9f9; }
+        
+        .warning { background: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px; }
+        .log-key { background: #2c3e50; color: #ecf0f1; padding: 10px; text-align: center; border-radius: 6px; font-weight: bold; letter-spacing: 2px; }
+        .nav-links { margin-bottom: 20px; }
+        .nav-links a { color: #3498db; text-decoration: none; font-weight: bold; }
+        .alert-danger {
+            background-color: #d32f2f; /* Dark Red */
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            list-style-type: none;
+            border: 2px solid #b71c1c;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-links">
+    <a href="index.html">← Back to Home Page</a>
+</div>
+
+<div class="card">
+    <h1>Alarm Connection Instructions</h1>
+    
+    <div class="warning">
+        <strong>CAUTION:</strong> Installation must be performed with the negative battery terminal disconnected. Incorrect connection may damage the motorcycle's electronics or the alarm module.
+    </div>
+
+    <section>
+        <h2>Connector Diagram (Rear View)</h2>
+        <div class="diagram">
+            <img src="naklejka.png" alt="Pinout Diagram">
+        </div>
+    </section>
+
+    <section>
+        <h2>Pinout Description</h2>
+        <table class="pin-table">
+            <thead>
+                <tr>
+                    <th>PIN No.</th>
+                    <th>Wire Color</th>
+                    <th>Function / Connection Point</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Blue</td><td>Siren (+)</td></tr>
+                <tr><td>2</td><td>Red</td><td>Constant +12V Power (with fuse)</td></tr>
+                <tr><td>3</td><td>Black</td><td>Ground (GND)</td></tr>
+                <tr><td>4</td><td>Yellow</td><td>Seat Sensor</td></tr>
+                <tr><td>5</td><td>Yellow</td><td>Seat Sensor</td></tr>
+                <tr><td>6</td><td>Yellow</td><td>Left Turn Signal</td></tr>
+                <tr><td>7</td><td>Yellow</td><td>Right Turn Signal</td></tr>
+                <tr><td>8</td><td>Green</td><td>Motorcycle Horn (control)</td></tr>
+                <tr><td>9</td><td>Red</td><td>Ignition (+12V after key turn)</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>App Pairing</h2>
+        <p>For the first connection with the mobile app via Bluetooth, a unique logKey is required, which can be found on the alarm housing:</p>
+        <div class="log-key">logKey</div>
+     
+        <p>Next, enter the default PIN 1234. You should set your own PIN code in the application afterwards.</p>
+    </section>
+
+    <section>
+        <h2>Installation Tips</h2>
+        <ul>
+            <li><strong>Mounting Location:</strong> Do not mount the alarm directly under metal frame elements to avoid limiting the range of the GSM and Bluetooth modules. The best location is the space under the seat or the side fairing.</li>
+          
+            <li><strong>Fuse:</strong> It is recommended to use a 10A fuse on the red wire (+12V).</li>
+             <li class="alert-danger"><strong>VERY IMPORTANT: <br><br>
+Horn:</strong> In most motorcycle electrical systems, +12V is supplied after the ignition is turned on, and the horn is controlled by supplying ground via the handlebar switch. To use the motorcycle's factory horn, you must use a relay or install an additional dedicated horn. <br><br>
+<strong>Turn Signals:</strong> When connecting the turn signals, ensure you are connecting to the 12V power wire. Accidentally connecting to ground will damage the alarm!</li>
+        </ul>
+    </section>
+</div>
+
+<div style="margin-top: 20px;">
+    <a href="sch_en.jpg" target="_blank">
+        <img src="sch_en.jpg" alt="Instructions Diagram" style="width: 100%; border-radius: 5px;">
+    </a>
+</div>
+
+</body>
+</html>
